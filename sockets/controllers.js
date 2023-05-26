@@ -15,13 +15,10 @@ const socketController = (socket, io) => {
         socket.broadcast.emit("nuevo-usuario", "El usuario " + socket.name + " ha ingresado a la sala");
     });
 
-    /*socket.on("message", msg => {
-        // Enviar Mensaje a todos los sockets de la sala
-        let room = chats[socket.room];
-        room.forEach(client => {
-            client.emit("message", msg);
-        });
-    });*/
+    socket.on("message", msg => {
+        // Enviar Mensaje
+        socket.broadcast.emit("nuevo-usuario", msg);
+    });
 
     const leave = () => {
         let i = 0;

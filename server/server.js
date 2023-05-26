@@ -14,12 +14,12 @@ class Server {
         });
 
         this.paths = {
-            auth: '/api/auth'
+            auth: '/api/mensajes'
         };
 
-        //this.connectToDB();
+        this.connectToDB();
         this.addMiddlewares();
-        //this.setRoutes();
+        this.setRoutes();
         // WebSockets
         this.sockets();
     }
@@ -34,9 +34,9 @@ class Server {
         this.app.use( express.static('public') );
     }
 
-    //setRoutes() {
-    //    this.app.use(this.paths.auth, require('../routes/auth'));
-    //}
+    setRoutes() {
+        this.app.use(this.paths.auth, require('../routes/Message'));
+    }
 
     sockets() {
         // Cuando se Conecta
